@@ -1,9 +1,8 @@
 <?php
-define('DB_SERVER','localhost');
-define('DB_USER','root');
-define('DB_PASS' ,'');
-define('DB_NAME','newsportal');
-$con = mysqli_connect(DB_SERVER,DB_USER,DB_PASS,DB_NAME);
+require_once 'core/helpers/functions.php';
+initLoader();
+loadEnv();
+$con = mysqli_connect(getenv("DB_SERVER"),getenv("DB_USER"),getenv("DB_PASS"),getenv("DB_NAME"));
 // Check connection
 if (mysqli_connect_errno())
 {

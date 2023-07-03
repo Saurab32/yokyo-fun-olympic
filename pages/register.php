@@ -1,14 +1,18 @@
 
 <?php
-  require("../database/connection.php"); 
+
+use core\classes\EmailService;
+
+require("../database/connection.php");
   require("../database/function.php"); 
 ?>
 
 <?php
-
+$emailService = new EmailService();
 	if (isset($_POST['btnSubmit'])) {
         extract($_POST);
-		add_Users($connection,$first_name,$last_name,$email,$gender,$txt_password,$phone);        
+		add_Users($connection,$first_name,$last_name,$email,$gender,$txt_password,$phone);
+        $emailService->send($email, $first_name." ".$last_name,"Welcome to News Portal", "You have successfully registered to News Portal");
 	}
 ?>
 
