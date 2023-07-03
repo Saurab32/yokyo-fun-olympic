@@ -22,6 +22,7 @@
 
     <!-- Main CSS-->
     <link href="../assets/css/style3.css" rel="stylesheet" media="all">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 <body>
  <div class="page-wrapper bg-gra-01 p-t-130 p-b-100 font-poppins">
@@ -83,6 +84,8 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="g-recaptcha" data-sitekey="6Leo1fAmAAAAAJRBHNCxZdIbuMDAGjpxLJG9ATVP"></div>
                        
                         <div class="p-t-15">
                             <span style="text-align: center;"><input type="submit" class="btn btn--radius-2 btn--blue" name="btnSubmit" value="submit" ></span>

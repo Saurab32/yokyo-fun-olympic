@@ -27,6 +27,7 @@ if($result->num_rows > 0){
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 <body  class="bg-secondary">
 		<div class="container w-50 mt-5">
@@ -35,6 +36,7 @@ if($result->num_rows > 0){
 				<h1 class="text-success">Forget Password</h1>
 				<label for="Email">Email</label>
 				<input type="email" name="email" placeholder="Email Address" class="form-control form-control-sm" required><br>
+                <div class="g-recaptcha" data-sitekey="6Leo1fAmAAAAAJRBHNCxZdIbuMDAGjpxLJG9ATVP"></div>
 				<button type="submit" name="submit" class="btn btn-success btn-sm">Reset Password</button>
 				<?php echo $link; ?>
 			</form>

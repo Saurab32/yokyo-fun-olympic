@@ -17,6 +17,7 @@
 	<link rel="stylesheet" type="text/css" href="../assets/css/util.css">
 	<link rel="stylesheet" type="text/css" href="../assets/css/main2.css">
 <!--===============================================================================================-->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 <body style="background-color: #666666;">
 	
@@ -27,6 +28,8 @@
 					<span class="login100-form-title p-b-43">
 						Login to continue
 					</span>
+
+
 					
 					
 					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
@@ -41,6 +44,7 @@
 						<span class="focus-input100"></span>
 						<span class="label-input100">Password</span>
 					</div>
+                    <div class="g-recaptcha" data-sitekey="6Leo1fAmAAAAAJRBHNCxZdIbuMDAGjpxLJG9ATVP"></div>
 
 					<div class="flex-sb-m w-full p-t-3 p-b-32">
 						<div class="contact100-form-checkbox">
