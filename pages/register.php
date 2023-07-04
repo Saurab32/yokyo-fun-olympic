@@ -1,29 +1,28 @@
-
 <?php
-
-use core\classes\EmailService;
-
+session_start();
+include(__DIR__.'/../includes/config.php');
 require("../database/connection.php");
-  require("../database/function.php"); 
-?>
+require("../database/function.php");
 
-<?php
-$emailService = new EmailService();
 	if (isset($_POST['btnSubmit'])) {
+        verifyCaptcha('register_err');
         extract($_POST);
-		add_Users($connection,$first_name,$last_name,$email,$gender,$txt_password,$phone);
-        $emailService->send($email, $first_name." ".$last_name,"Welcome to News Portal", "You have successfully registered to News Portal");
+        add_Users($connection,$first_name,$last_name,$email,$gender,$txt_password,$phone);
+        sendMail(
+                $email,
+                $first_name." ".$last_name,
+                "Welcome to News Portal",
+                "You have successfully registered to News Portal"
+        );
 	}
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Register</title>
-	
-
     <!-- Main CSS-->
     <link href="../assets/css/style3.css" rel="stylesheet" media="all">
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
@@ -34,6 +33,7 @@ $emailService = new EmailService();
             <div class="card card-4">
                 <div class="card-body">
                     <h2 class="title">Registration Form</h2>
+                    <?= flash_message('register_err'); ?>
                     <form method="POST" action="">
                         <div class="row row-space">
                             <div class="col-2">
@@ -89,7 +89,7 @@ $emailService = new EmailService();
                             </div>
                         </div>
 
-                        <div class="g-recaptcha" data-sitekey="6Leo1fAmAAAAAJRBHNCxZdIbuMDAGjpxLJG9ATVP"></div>
+                        <div class="g-recaptcha" data-sitekey="<?= config('recaptcha.site_key');  ?>"></div>
                        
                         <div class="p-t-15">
                             <span style="text-align: center;"><input type="submit" class="btn btn--radius-2 btn--blue" name="btnSubmit" value="submit" ></span>

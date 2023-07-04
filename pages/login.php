@@ -1,7 +1,12 @@
 <?php
-  session_start(); 
+  session_start();
+include(__DIR__.'/../includes/config.php');
   require("../database/connection.php"); 
-  require("../database/function.php"); 
+  require("../database/function.php");
+
+  if (isset($_POST['btn_submit'])){
+    verifyCaptcha('login_err');
+  }
 ?>
 
 
@@ -28,9 +33,7 @@
 					<span class="login100-form-title p-b-43">
 						Login to continue
 					</span>
-
-
-					
+                    <?= flash_message('login_err'); ?>
 					
 					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
 						<input class="input100" type="text" name="email">
@@ -44,8 +47,7 @@
 						<span class="focus-input100"></span>
 						<span class="label-input100">Password</span>
 					</div>
-                    <div class="g-recaptcha" data-sitekey="6Leo1fAmAAAAAJRBHNCxZdIbuMDAGjpxLJG9ATVP"></div>
-
+                    <div class="g-recaptcha" data-sitekey="<?= config('recaptcha.site_key');  ?>"></div>
 					<div class="flex-sb-m w-full p-t-3 p-b-32">
 						<div class="contact100-form-checkbox">
 							<input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">

@@ -1,8 +1,12 @@
 <?php
-require_once 'core/helpers/functions.php';
+global $appConfig;
+require_once __DIR__ . "/../vendor/autoload.php";
+$appConfig =  require_once __DIR__ . "/../core/config/app.php";
+require_once  __DIR__ . "/../core/helpers/functions.php";
+debugMode();
 initLoader();
-loadEnv();
-$con = mysqli_connect(getenv("DB_SERVER"),getenv("DB_USER"),getenv("DB_PASS"),getenv("DB_NAME"));
+$db_config =(object) config("database");
+$con = mysqli_connect($db_config->host,$db_config->user,$db_config->password,$db_config->database);
 // Check connection
 if (mysqli_connect_errno())
 {

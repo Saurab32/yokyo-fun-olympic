@@ -9,20 +9,20 @@ class  EmailService{
     public array $smtp;
     public function __construct()
     {
-        $config =env();
-        $this->smtp = $config['smtp'];
-        $this->mail = new PHPMailer(true);
-        $this->mail->SMTPDebug = SMTP::DEBUG_OFF;                      //Enable verbose debug output
-        $this->mail->isSMTP();                                            //Send using SMTP
-        $this->mail->Host       = getenv("SMTP_HOST");                          //Set the SMTP server to send through
-        $this->mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-        $this->mail->Username   = getenv("SMTP_USERNAME");;                      //SMTP username
-        $this->mail->Password   = getenv("SMTP_PASSWORD");;                      //SMTP password
-        $this->mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
-        $this->mail->Port       = getenv("SMTP_PORT");;                          //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+        $config =config('smtp'); // get smtp config from config/app.php
+        $this->smtp = $config;
+        $phpmailer = new PHPMailer();
+        $phpmailer->isSMTP();
+        $phpmailer->SMTPDebug = SMTP::DEBUG_OFF;
+        $phpmailer->Host = $config['host'];
+        $phpmailer->SMTPAuth = true;
+        $phpmailer->Port = $config['port'];
+        $phpmailer->Username = $config['username'];
+        $phpmailer->Password = $config['password'];
+        $this->mail =$phpmailer;
     }
 
-    public function send($address_mail,$name,$title,$body)
+    public function send(string $email, string $name, string $title, string  $body)
     {
         $html = "<div>
             <h1>$title</h1>
@@ -33,7 +33,7 @@ class  EmailService{
         try {
             //Recipients
             $this->mail->setFrom($this->smtp['username'], $this->smtp['name']);
-            $this->mail->addAddress($address_mail, $name);     //Add a recipient
+            $this->mail->addAddress($email, $name);     //Add a recipient
             // Attachments
             // Content
             $this->mail->isHTML(true);

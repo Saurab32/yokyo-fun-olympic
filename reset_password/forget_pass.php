@@ -1,7 +1,10 @@
-<?php include('connection.php');
+<?php
+include(__DIR__.'/../includes/config.php');
+include('connection.php');
 session_start();
 $message = $link = '';
 if(isset($_POST['submit'])) {
+    verifyCaptcha('forget_err');
 	$email = $_POST['email'];
 	$query = "SELECT * FROM tbl_users WHERE user_email = '".$email."'";
 	$result = $conn->query($query);
@@ -33,10 +36,11 @@ if($result->num_rows > 0){
 		<div class="container w-50 mt-5">
 			<form class="bg-light p-5 shadow-lg" method="post">
 				<?php echo $message; ?>
+                <?= flash_message('forget_err') ?>
 				<h1 class="text-success">Forget Password</h1>
 				<label for="Email">Email</label>
 				<input type="email" name="email" placeholder="Email Address" class="form-control form-control-sm" required><br>
-                <div class="g-recaptcha" data-sitekey="6Leo1fAmAAAAAJRBHNCxZdIbuMDAGjpxLJG9ATVP"></div>
+                <div class="g-recaptcha" data-sitekey="<?= config('recaptcha.site_key');  ?>"></div>
 				<button type="submit" name="submit" class="btn btn-success btn-sm">Reset Password</button>
 				<?php echo $link; ?>
 			</form>
