@@ -1,24 +1,26 @@
 <?php
-include(__DIR__.'/../includes/config.php');
-include('connection.php');
 session_start();
+include(__DIR__.'/../includes/config.php');
+require("../database/connection.php");
+require("../database/function.php");
+
 $message = $link = '';
 if(isset($_POST['submit'])) {
     verifyCaptcha('forget_err');
-	$email = $_POST['email'];
-	$query = "SELECT * FROM tbl_users WHERE user_email = '".$email."'";
-	$result = $conn->query($query);
-if($result->num_rows > 0){
-	while($row = $result->fetch_assoc()){
-		$id = $row['user_id'];
-		$id_encode = base64_encode($id);
-		$link = "<a href='Reset_pass.php?MnoQtyPXZORTE=$id_encode' class='btn btn-info btn-sm'>Recieve Mail</a>";
+	$request = (object) $_POST;
+	$user = table('tbl_users')->where('user_email','=',$request->email)->first();
+	if($user){
+		$token = randomStr(6);
+		// table('tbl_users')
+		sendMail($request->email,$user->user_fname,"reset password","<a href=\"http://newsportal_old.test/reset_password/Reset_pass.php?MnoQtyPXZORTE=$token\">Click here</a> to reset passowrd");
 		$message = "<div class='alert alert-success'> Valid Email Id..!!</div>";
-	}
 	}else{
 		$message = "<div class='alert alert-danger'>Invalid Email..!!</div>";
 	}
-	}
+	// $email = $_POST['email'];
+	// $query = "SELECT * FROM tbl_users WHERE user_email = '".$email."'";
+	// $result = $connection->query($query);
+}
 ?>
 <!DOCTYPE html>
 <html>

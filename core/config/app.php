@@ -18,8 +18,8 @@ return [
         "name"=>"Yokyo Fun Olympic",
         "host"=>"sandbox.smtp.mailtrap.io",
         "port"=>2525,
-        "username"=>"9fe8eaed42fdab",
-        "password"=>"16ad2e9c3bc323",
+        "username"=>"55a02409903fbf",
+        "password"=>"91d209c46e9895",
     ],
     // recaptcha configs
     "recaptcha"=>[

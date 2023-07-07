@@ -4,7 +4,8 @@ session_start();
 $id = $_GET['MnoQtyPXZORTE'];
 $message = $Home = '';
 $_SESSION['user'] = $id;
-if ($_SESSION['user'] == '') {
+// if ($_SESSION['user'] == '') {
+if (false) {
 		header("location:forget_pass.php");
 }
 else

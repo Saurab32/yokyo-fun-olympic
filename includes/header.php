@@ -13,13 +13,13 @@
                      <a class="nav-link" href="about-us.php">About</a>
                  </li>
                  <li class="nav-item">
-                     <a class="nav-link" href="category.php?catid=8">News</a>
+                     <a class="nav-link" href="category.php?catid=11">News</a>
                  </li>
                  <li class="nav-item">
-                     <a class="nav-link" href="category.php?catid=9">Highligts</a>
+                     <a class="nav-link" href="news-details.php?nid=15">Highligts</a>
                  </li>
                  <li class="nav-item">
-                     <a class="nav-link" href="category.php?catid=10">Schedule</a>
+                     <a class="nav-link" href="news-details.php?nid=14">Schedule</a>
                  </li>
                  <li class="nav-item">
                      <a class="nav-link" href="contact-us.php">Contact us</a>
